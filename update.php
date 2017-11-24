@@ -15,7 +15,10 @@ $title=$_POST['title'];
 $year=$_POST['year'];
 $duration=$_POST['duration'];
 $certId=$_POST['certificate'];
-$genres=$_POST['genres'];
+$genres=[];
+if(isset($_POST['genres'])){
+	$genres=$_POST['genres'];
+}
 $msg="";
 
 //SQL UPDATE to change a row in the films table
@@ -34,13 +37,13 @@ if($affected_rows==1){
     $msg="<p>There was a problem inserting the data.</p>";
 }
 
-//SQL DELETE to remove all rows (for this film) in the film_genre table
+//SQL DELETE to remove all existing rows (for this film) in the film_genre table
 $query="DELETE from film_genre WHERE film_id=:id";
 $stmt=$conn->prepare($query);
 $stmt->bindValue(':id', $id);
 $affected_rows = $stmt->execute();
 
-//now we need to add rows for the chosen films genres
+//now we need to add rows for the chosen film's genres
 foreach($genres as $genreId){
 	$query="INSERT INTO film_genre (film_id, genre_id) VALUES (:filmId, :genreId)";
 	$stmt=$conn->prepare($query);
@@ -56,7 +59,7 @@ $conn=NULL;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Update student record</title>
+<title>Update film record</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>

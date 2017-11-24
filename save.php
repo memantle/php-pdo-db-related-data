@@ -15,7 +15,10 @@ $title=$_POST['title'];
 $year=$_POST['year'];
 $duration=$_POST['duration'];
 $certId=$_POST['certificate'];
-$genres=$_POST['genres'];
+$genres=[];
+if(isset($_POST['genres'])){
+	$genres=$_POST['genres'];
+}
 $msg="";
 
 //SQL INSERT for adding a new row

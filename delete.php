@@ -7,20 +7,23 @@ catch (PDOException $exception)
 	echo "Oh no, there was a problem" . $exception->getMessage();
 }
 
-//This is a simple example we would normally do some form validation here
+//This is a simple example we would normally do some validation here
 
 //the id from the query string e.g. details.php?id=4
-$studentId=$_GET['id'];
+$filmId=$_GET['id'];
 
-//prepared statement uses the id to delete a single student
-$stmt = $conn->prepare("DELETE FROM students WHERE students.id = :id");
-$stmt->bindValue(':id',$studentId);
+//first we need to delete the genres associated with the film
+$stmt = $conn->prepare("DELETE FROM film_genre WHERE film_genre.film_id = :id");
+$stmt->bindValue(':id',$filmId);
+$stmt->execute();
 
-//when we execute the SQL statement the number of affected rows is returned
-$affected_rows = $stmt->execute();
-$conn=NULL;
+//now delete the film itself
+$stmt = $conn->prepare("DELETE FROM films WHERE films.id = :id");
+$stmt->bindValue(':id',$filmId);
+$affected_rows=$stmt->execute();
+
 if($affected_rows==1){
-    $msg="<p>Deleted student with id of ".$studentId." from the database.</p>";
+    $msg="<p>Deleted film with id of ".$filmId." from the database.</p>";
 }else{
     $msg="<p>There was a problem deleting the record.</p>";
 }
@@ -31,7 +34,7 @@ $conn=NULL;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Delete the student</title>
+<title>Delete the film</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>

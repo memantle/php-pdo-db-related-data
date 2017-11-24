@@ -7,10 +7,10 @@ catch (PDOException $exception)
 	echo "Oh no, there was a problem" . $exception->getMessage();
 }
 
-//select all the students
-$query = "SELECT * FROM students";
+//select all the films
+$query = "SELECT * FROM films";
 $resultset = $conn->query($query);
-$students = $resultset->fetchAll();
+$films = $resultset->fetchAll();
 $conn=NULL;
 
 ?>
@@ -19,17 +19,17 @@ $conn=NULL;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>List the students</title>
+<title>List the films</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
 <?php
-foreach ($students as $student) {
+foreach ($films as $film) {
     echo "<p>";
-    echo $student["first_name"]." ".$student["last_name"];
-    //outputs a hyperlink for each student e.g. <a href="edit.php?id=4">edit</a>
-    //each hyperlink has a query string (look back at practical 1) that specifies which student has been clicked on
-    echo " (<a href='edit.php?id=" . $student["id"] . "'>edit</a>)";
+    echo $film["title"];
+    //outputs a hyperlink for each film e.g. <a href="edit.php?id=4">edit</a>
+    //each hyperlink has a query string (look back at practical 1) that specifies which film has been clicked on
+    echo " (<a href='edit.php?id=" . $film["id"] . "'>edit</a>)";
     echo "</p>";
 }
 

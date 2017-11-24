@@ -51,7 +51,7 @@ $conn=NULL;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
-<h1>Add a new film</h1>
+<h1>Edit film details</h1>
 <form action="update.php" method="post">
 <!-- <input type="hidden"> creates a hidden text field i.e. not visible to the user
 	we use it to store the id number of the selected film -->
