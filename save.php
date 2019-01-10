@@ -1,6 +1,7 @@
 <?php
 try{
        $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+       $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -19,7 +20,6 @@ $genres=[];
 if(isset($_POST['genres'])){
 	$genres=$_POST['genres'];
 }
-$msg="";
 
 //SQL INSERT for adding a new row
 //Use a prepared statement to bind the values from the form
@@ -29,16 +29,7 @@ $stmt->bindValue(':title', $title);
 $stmt->bindValue(':year', $year);
 $stmt->bindValue(':duration', $duration);
 $stmt->bindValue(':certId', $certId);
-
-//when we execute the SQL statement the number of affected rows is returned
-$affected_rows = $stmt->execute();
-
-if($affected_rows==1){
-    $msg="<p>Successfully added the details for ".$title."</p>";
-}else{
-    $msg="<p>There was a problem inserting the data.</p>";
-}
-
+$stmt->execute();
 //now we need the id of the film we have just inserted
 $newFilmId = $conn->lastInsertId(); 
 
@@ -49,7 +40,6 @@ foreach($genres as $genreId){
 	$stmt->bindValue(':genreId', $genreId);
 	$stmt->execute();
 }
-
 
 $conn=NULL;
 ?>
@@ -62,8 +52,6 @@ $conn=NULL;
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
-<?php
-echo $msg;
-?>
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 try{
-       $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -19,20 +20,24 @@ $conn=NULL;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>List the films</title>
+<title>Delete the films</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 </head>
 <body>
+<form action="delete.php" method="POST">
 <?php
 foreach ($films as $film) {
-    echo "<p>";
+     echo "<p>";
+    echo "<label>";
+    //outputs a checkbox button for each film e.g. <label><input type="checkbox" name="ids[]" value="1" '="">Jaws</label>
+    echo "<input type='checkbox' name='ids[]' value='{$film["id"]}''>";
     echo $film["title"];
-    //outputs a hyperlink for each film e.g. <a href="details.php?id=4">delete</a>
-    //each hyperlink has a query string (look back at practical 1) that specifies which film has been clicked on
-	echo " (<a href='delete.php?id=" . $film["id"] . "'>delete</a>)";
+    echo "</label>";
     echo "</p>";
 }
 
 ?>
+<input type="submit">
+</form>
 </body>
 </html>

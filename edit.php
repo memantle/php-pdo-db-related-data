@@ -1,6 +1,7 @@
 <?php
 try{
        $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+       $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -68,9 +69,9 @@ $conn=NULL;
 <?php
 foreach($certificates as $certificate){
 	if($film["certificate_id"]==$certificate["id"]){
-		echo "<option value='".$certificate["id"]."' selected>".$certificate["name"]."</option>";
+		echo "<option value='{$certificate["id"]}' selected>{$certificate["name"]}</option>";
 	}else{
-		echo "<option value='".$certificate["id"]."'>".$certificate["name"]."</option>";
+		echo "<option value='{$certificate["id"]}'>{$certificate["name"]}</option>";
 	}
 }
 ?>
@@ -86,8 +87,8 @@ foreach($genres as $genre){
 	if(in_array($genre["id"], $selectedGenresArr)){
 			$checked="checked";
 	}
-	echo "<label for='".$genre["name"]."'>";
-	echo "<input type='checkbox' name='genres[]' value='".$genre["id"]."' id='".$genre["name"]."' ".$checked.">";
+	echo "<label for='{$genre["name"]}'>";
+	echo "<input type='checkbox' name='genres[]' value='{$genre["id"]}' id='{$genre["name"]}' {$checked}>";
 	echo $genre["name"];
 	echo "</label>";
 }

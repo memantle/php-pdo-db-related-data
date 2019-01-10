@@ -1,6 +1,7 @@
 <?php
 try{
        $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+       $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -32,9 +33,9 @@ $stmt->bindValue(':certId', $certId);
 $affected_rows = $stmt->execute();
 
 if($affected_rows==1){
-    $msg="<p>Successfully updated the details for ".$title."</p>";
+    $msg="<p>Successfully updated the details for {$title}</p>";
 }else{
-    $msg="<p>There was a problem inserting the data.</p>";
+    $msg="<p>There was a problem.</p>";
 }
 
 //SQL DELETE to remove all existing rows (for this film) in the film_genre table

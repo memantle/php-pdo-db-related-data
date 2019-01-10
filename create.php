@@ -43,7 +43,7 @@ $conn=NULL;
 <select id="certificate" name="certificate">
 <?php
 foreach($certificates as $certificate){
-	echo "<option value='".$certificate["id"]."'>".$certificate["name"]."</option>";
+	echo "<option value='{$certificate["id"]}'>{$certificate["name"]}</option>";
 }
 ?>
 </select>
@@ -53,7 +53,7 @@ foreach($certificates as $certificate){
 
 <?php
 foreach($genres as $genre){
-	echo "<label for='".$genre["name"]."'><input type='checkbox' name='genres[]' value='".$genre["id"]."' id='".$genre["name"]."'>".$genre["name"]."</label>";
+	echo "<label for='{$genre["name"]}'><input type='checkbox' name='genres[]' value='{$genre["id"]}' id='{$genre["name"]}'>{$genre["name"]}</label>";
 }
 ?>
 </fieldset>

@@ -1,6 +1,7 @@
 <?php
 try{
-       $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -8,7 +9,8 @@ catch (PDOException $exception)
 }
 
 //select all the films
-$query = "SELECT * FROM films";
+$query = "SELECT * FROM films 
+INNER JOIN certificates ON films.certificate_id=certificates.id";
 $resultset = $conn->query($query);
 $films = $resultset->fetchAll();
 $conn=NULL;
@@ -28,7 +30,7 @@ $conn=NULL;
 //loop over the array of films
 foreach ($films as $film) {
     echo "<p>";
-    echo $film["title"];
+    echo "{$film["title"]}({$film["name"]})";
     echo "</p>";
 }
 

@@ -1,6 +1,7 @@
 <?php
 try{
        $conn = new PDO('mysql:host=localhost;dbname=u0123456', 'u0123456', '01jan96');
+       $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch (PDOException $exception) 
 {
@@ -29,7 +30,7 @@ foreach ($films as $film) {
     echo $film["title"];
     //outputs a hyperlink for each film e.g. <a href="edit.php?id=4">edit</a>
     //each hyperlink has a query string (look back at practical 1) that specifies which film has been clicked on
-    echo " (<a href='edit.php?id=" . $film["id"] . "'>edit</a>)";
+    echo " (<a href='edit.php?id={$film["id"]}'>edit</a>)";
     echo "</p>";
 }
 
