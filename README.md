@@ -17,7 +17,7 @@ Through working on the assignment you should now be familiar with *reading* data
 
 Examples for each of the above can be found at https://github.com/CIT2318/php-pdo-databases-lec-examples/
 
-## Exercise 2 - Create, Update and Delete using a related tables
+## Exercise 2 - Create, Update and Delete using related data
 Working with tables that have relationships is more difficult. You can have a look at the files in this repository for examples of typical approaches we might take.
 
 The examples use the Certificate-Film-Genre example and involve creating, updating and deleting a film. 
