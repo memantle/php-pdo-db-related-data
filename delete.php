@@ -19,7 +19,7 @@ if(isset($_POST['ids'])){
 	//prepared statement uses the id to delete a single film
 	$deleteFilmStmt = $conn->prepare("DELETE FROM films WHERE films.id = :id");
 	
-	//loop over the array of ids to delete multiple students
+	//loop over the array of ids to execute the prepared statements and delete multiple films
 	foreach($ids as $id){
 		//delete the genres
 		$deleteGenresStmt->bindValue(':id',$id);
