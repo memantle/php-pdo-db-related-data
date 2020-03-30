@@ -1,6 +1,6 @@
 # PHP and PDO - Working with Related Data
 
-This reponsitory contains examples for working with related data using the films example we have looked at previously.
+This repository contains examples for working with related data using the films example we have looked at previously. See https://github.com/CIT2318/mysql-foreign-keys-joins/blob/master/films-db.sql for the database.
 
 ### One-to-many relationships e.g Certificate and Film
 * When inserting a new film, we need to specify the certificate for the film. *certificate_id* is a foreign key in the films table.
