@@ -33,6 +33,8 @@ $stmt->execute();
 //now we need the id of the film we have just inserted
 $newFilmId = $conn->lastInsertId(); 
 
+//genres is an array of genre ids
+//for each genre id insert into the film_genre junction table
 foreach($genres as $genreId){
 	$query="INSERT INTO film_genre (film_id, genre_id) VALUES (:filmId, :genreId)";
 	$stmt=$conn->prepare($query);
