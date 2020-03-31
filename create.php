@@ -54,6 +54,8 @@ foreach($certificates as $certificate){
 
 <?php
 foreach($genres as $genre){
+	//e.g. "<label for='Thriller'><input type='checkbox' name='genres[]' value='2' id='Thriller'>Thriller</label>";
+	// The genres[] means pass the selected items as an array 
 	echo "<label for='{$genre["name"]}'><input type='checkbox' name='genres[]' value='{$genre["id"]}' id='{$genre["name"]}'>{$genre["name"]}</label>";
 }
 ?>
